@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0.1-Todo-App</title>
+    <link rel="stylesheet" href="/0.1-Todo-App/src/style.css">
+</head>
+<body>
+    <h1>Bienvenidos a Mi Lista de Tareas</h1>
+    <ul class="todo-list" id="todo-list"></ul>
+    <input type="text" id="todo-input" placeholder="New Task">
+    <button id="add-todo-btn">Agregar tarea</button>
+
+    <button id="logout-btn" class="logout-btn">cerrar sesion</button>
+
+     <script>
+      // Comprobar si el usuario está logueado
+      if (!localStorage.getItem('isLoggedIn')) {
+        window.location.href = 'index.html'; // Redirigir al login si no está logueado
+      }
+
+      const addTodoBtn = document.getElementById('add-todo-btn');
+      const todoInput = document.getElementById('todo-input');
+      const todoList = document.getElementById('todo-list');
+      const logoutBtn = document.getElementById('logout-btn');
+
+      // Estado de tareas (en una app real, deberías usar una base de datos o localStorage)
+      let todos = [];
+
+      // Renderizar las tareas
+      function renderTodos() {
+        todoList.innerHTML = '';
+        todos.forEach((todo, index) => {
+          const li = document.createElement('li');
+          li.classList.add('todo-item');
+          li.innerHTML = `
+            <input type="checkbox" ${todo.completed ? 'checked' : ''} onclick="toggleComplete(${index})" />
+            <span>${todo.text}</span>
+            <button onclick="deleteTodo(${index})">X</button>
+          `;
+          todoList.appendChild(li);
+        });
+      }
+
+      // Agregar tarea
+      addTodoBtn.addEventListener('click', () => {
+        const text = todoInput.value.trim();
+        if (text) {
+          todos.push({ text, completed: false });
+          todoInput.value = '';
+          renderTodos();
+        }
+      });
+
+      // Marcar tarea como completada
+      function toggleComplete(index) {
+        todos[index].completed = !todos[index].completed;
+        renderTodos();
+      }
+
+      // Eliminar tarea
+      function deleteTodo(index) {
+        todos.splice(index, 1);
+        renderTodos();
+      }
+
+      // Cerrar sesión
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('isLoggedIn');
+        window.location.href = 'index.html'; // Redirigir al login
+      });
+
+      // Inicializar la vista con las tareas
+      renderTodos();
+    </script>
+</body>
+</html>
