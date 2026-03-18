@@ -1,16 +1,13 @@
-
-
-
-const loginFrom = document.getElementById('login-from');
+const loginFrom = document.getElementById('login-form');
 
 loginFrom.addEventListener('submit', (e) =>{
-    e.defaultPrevented();
+    e.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    if(username === 'Mario Calderon' && password === '0000'){
+    if(username === 'mario calderon' && password === '1234'){
         localStorage.setItem('isLoggedIn', 'true');
-        window.location.href = 'app.html';
+        window.location.href = 'todo.html';
     }else {
         alert('Usuario o Contraseña incorrectos');
     }
