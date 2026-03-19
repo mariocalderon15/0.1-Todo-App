@@ -12,3 +12,15 @@ loginFrom.addEventListener('submit', (e) =>{
         alert('Usuario o Contraseña incorrectos');
     }
 });
+
+const passwordInput = document.querySelector('#password');
+const toggleBtn = document.querySelector('#togglePassword');
+const icon = toggleBtn.querySelector('i');
+
+toggleBtn.addEventListener('click', ()=>{
+const isPassword = passwordInput.type === 'password';
+passwordInput.type = isPassword ? 'text' : 'password';
+
+icon.classList.toggle('bi-eye');
+icon.classList.toggle('bi-eye-slash');
+});
