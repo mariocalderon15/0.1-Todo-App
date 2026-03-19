@@ -2,7 +2,7 @@ const loginFrom = document.getElementById('login-form');
 
 loginFrom.addEventListener('submit', (e) =>{
     e.preventDefault();
-    const username = document.getElementById('username').value;
+    const username = document.getElementById('username').value.toLowerCase();
     const password = document.getElementById('password').value;
 
     if(username === 'mario calderon' && password === '1234'){

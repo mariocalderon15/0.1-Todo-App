@@ -70,7 +70,8 @@
     cursor: pointer;
     color: #888;
     font-size: 18px;
-    padding: 5px;
+    padding: 10px;
+    padding-bottom: 2px;
   }
 
   .eye-btn:hover {

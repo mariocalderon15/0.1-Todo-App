@@ -2,6 +2,16 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+		font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.4em;
+	background: #f5f5f5;
+	color: #111111;
+	min-width: 230px;
+	max-width: 550px;
+	margin: 0 auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-weight: 300;
 }
 
 button {
@@ -20,24 +30,24 @@ button {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-#logout-btn{
-	border-radius: 999px;
-}
-#logout-btn:hover {
-	background-color: rgb(161, 1, 1);
+#logout-btn {
+    display: block;          /* Para que ocupe toda la fila */
+    width: 100%;             /* Largo completo del contenedor */
+    max-width: 200px;        /* Limitar ancho en desktop */
+    margin: 200px;       /* Centramos y se separa del contenido */
+    padding: 12px 0;         /* Más alto para mejor clic */
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 999px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
 }
 
-body {
-	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	line-height: 1.4em;
-	background: #f5f5f5;
-	color: #111111;
-	min-width: 230px;
-	max-width: 550px;
-	margin: 0 auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-weight: 300;
+#logout-btn:hover {
+    background-color: rgb(161, 1, 1);
 }
 
 :focus {
@@ -81,7 +91,7 @@ body {
 	font-size: 80px;
 	font-weight: 200;
 	text-align: center;
-	color: #b83f45;
+	color: #0848c7;
 	-webkit-text-rendering: optimizeLegibility;
 	-moz-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
@@ -157,21 +167,48 @@ body {
 }
 
 .todo-list li {
-	position: relative;
-	font-size: 24px;
-	border-bottom: 1px solid #ededed;
+    position: relative;
+    font-size: 24px;
+    border-bottom: 2px solid #ededed;
+    padding: 2px 10px;   /* espacio interno */
+    margin-bottom: 5px;  /* espacio entre cada li */
+    border-radius: 8px;   /* bordes redondeados para que se vea más moderno */
+    background-color: #fff; /* fondo blanco para separar visualmente */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* sombra ligera para profundidad */
 }
 
 .todo-list li:last-child {
-	border-bottom: none;
+    margin-bottom: 0; /* que el último li no tenga espacio extra */
+}
+
+.todo-list li label {
+	word-break: break-all;
+	padding: 10px 15px 15px 60px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+	font-weight: 400;
+	color: #4d4d4d;
+}
+.todo-count{
+
+}
+@media (max-width: 430px) {
+    .todo-list li {
+        font-size: 18px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+    }
 }
 
 .todo-list li.editing {
+	position: relative;
 	border-bottom: none;
 	padding: 0;
 }
 
 .todo-list li.editing .edit {
+	position: relative;
 	display: block;
 	width: calc(100% - 43px);
 	padding: 12px 16px;
@@ -179,7 +216,8 @@ body {
 }
 
 .todo-list li.editing .view {
-	display: none;
+	position: relative;
+	
 }
 
 .todo-list li .toggle {
@@ -212,16 +250,6 @@ body {
 
 .todo-list li .toggle:checked + label {
 	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
-}
-
-.todo-list li label {
-	word-break: break-all;
-	padding: 15px 15px 15px 60px;
-	display: block;
-	line-height: 1.2;
-	transition: color 0.4s;
-	font-weight: 400;
-	color: #4d4d4d;
 }
 
 .todo-list li.completed label {
@@ -291,19 +319,19 @@ body {
 .todo-count {
 	float: left;
 	text-align: left;
+	margin-bottom: 10px;
 }
 
 .todo-count strong {
-	font-weight: 300;
+	font-weight: 400;
 }
 
 .filters {
 	margin: 0;
-	padding: 0;
-	list-style: none;
-	position: absolute;
-	right: 0;
-	left: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;              
+    gap: 5px;
 }
 
 .filters li {
@@ -327,19 +355,35 @@ body {
 	border-color: rgba(175, 47, 47, 0.2);
 }
 
-.clear-completed,
-html .clear-completed:active {
+.clear-completed, .clear-completed:active {
 	border-radius: 999px;
-	float: right;
-	position: relative;
-	line-height: 10px;
-	font-size: 0.75rem;
-	text-decoration: none;
-	cursor: pointer;
+    display: block;          /* Para que ocupe toda la fila */
+    width: 100%;             /* Largo completo del contenedor */
+    max-width: 300px;        /* Limitar ancho en desktop */
+    margin: 60px auto 0 auto;/* Separación de la lista */
+    padding: 10px;         /* Alto del botón */
+	font-size: 16px;
+    font-weight: 500;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
 }
 
 .clear-completed:hover {
-	background-color: rgb(42, 186, 243);
+    background-color: rgb(42, 186, 243);
+}
+
+/* ----------------- MEDIA QUERIES ----------------- */
+@media (max-width: 480px) {
+    #logout-btn,
+    .clear-completed {
+        font-size: 14px;
+        padding: 10px 0;
+    }
 }
 
 .info {
