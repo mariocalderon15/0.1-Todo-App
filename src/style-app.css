@@ -327,11 +327,11 @@ button {
 }
 
 .filters {
-	margin: 0;
+	margin: 10px 2px;
     padding: 0;
-    list-style: none;
-    display: flex;              
-    gap: 5px;
+    list-style: none;            
+    gap: 10px;
+	position: relative;
 }
 
 .filters li {
