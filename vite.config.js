@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: '/', 
+  base: '/0.1-Todo-App/', 
   build: {
     rollupOptions: {
       input: {
