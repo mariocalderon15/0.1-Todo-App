@@ -1,88 +1,234 @@
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+/* ==================== Variables ==================== */
+:root {
+  --text: #fefeff;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
+            rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-  }
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
 
-  input {
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px 40px 10px 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    outline: none;
-  }
-
-  input::placeholder {
-    color: rgba(0, 0, 0, 0.3);
-  }
-
-  label {
-  margin-top: 5px;
+  font: 18px/1.45 var(--font-sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-  .btn-submit {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #019fe3;
-    color: white;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
+/* ==================== Dark Mode ==================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #a3afc4;
+    --text-h: #dde2ec;
+    --bg: #2c2d35;
+    --border: #2e303a;
+    --code-bg: #5e6280;
+    --accent: #4c088f;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+              rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
+}
 
-  .btn-submit:hover {
-    background-color: #37b6f6;
+/* ==================== Global ==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ==================== Container ==================== */
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 40px;
+}
+
+@media (max-width: 1024px) {
+  #center {
+    padding: 32px 20px 24px;
+    gap: 18px;
   }
+}
 
-  .password-group {
-    position: relative;
-    width: 100%;
-  }
+/* ==================== Form ==================== */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background: var(--bg);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
 
-  .password-group input {
-    width: 100%;
-    padding: 10px 40px 10px 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    outline: none;
-  }
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  display: none; /* oculto por defecto */
+}
 
-  .eye-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+.hidden {
+  display: none;
+}
 
-    background: transparent;
-    border: transparent;
-    cursor: pointer;
-    color: #888;
-    font-size: 18px;
-    padding: 10px;
-    padding-bottom: 2px;
-  }
+form:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 15px 25px -5px;
+}
 
-  .eye-btn:hover {
-    color: #007bff;
-  }
+label {
+  margin-top: 10px;
+  font-weight: 500;
+}
 
-  .eye-btn:active {
-    transform: translateY(-50%) scale(0.9);
-  }
+input {
+  margin-top: 5px;
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  outline: none;
+  transition: all 0.2s;
+}
 
-  .password-group input:focus {
-    border-color: transparent;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-  }
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-bg);
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== Password Toggle ==================== */
+.password-group {
+  position: relative;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 18px;
+  transition: color 0.2s, transform 0.1s;
+}
+
+.eye-btn:hover {
+  color: var(--accent);
+}
+
+.eye-btn:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+/* ==================== Buttons ==================== */
+.btn-submit {
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: #9a2fff;
+  transform: scale(1.02);
+}
+
+.btn-danger {
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* ==================== Hero / Images ==================== */
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero .base,
+.hero .framework,
+.hero .vite {
+  margin: 0 auto;
+}
+
+.hero .base {
+  width: 170px;
+  z-index: 0;
+}
+
+.hero .framework,
+.hero .vite {
+  position: absolute;
+}
+
+.hero .framework {
+  z-index: 1;
+  top: 34px;
+  height: 28px;
+  transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
+    scale(1.4);
+}
+
+.hero .vite {
+  z-index: 0;
+  top: 107px;
+  height: 26px;
+  width: auto;
+  transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
+    scale(0.8);
+}
+
+/* ==================== Misc ==================== */
+#icons {
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+.h6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+}

@@ -1,20 +1,65 @@
-html,
+/* ==================== Variables ==================== */
+:root {
+	--text: #6b6375;
+	--text-h: #08060d;
+	--bg: #fff;
+	--border: #e5e4e7;
+	--code-bg: #f4f3ec;
+	--accent: #aa3bff;
+	--accent-bg: rgba(175, 70, 255, 0.1);
+	--accent-border: rgba(170, 59, 255, 0.5);
+	--social-bg: rgba(244, 243, 236, 0.5);
+	--shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
+		rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+	--font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+	--font-heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+	--font-mono: ui-monospace, Consolas, monospace;
+
+	font: 18px/1.45 var(--font-sans);
+	letter-spacing: 0.18px;
+	color-scheme: light dark;
+	color: var(--text);
+	background: var(--bg);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== Dark Mode ==================== */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--text: #000000;
+		--text-h: #000000;
+		--bg: #3c3737;
+		--border: #fbfbfb;
+		--code-bg: #ffffff;
+		--accent: #f531cd;
+		--accent-bg: rgba(192, 132, 252, 0.15);
+		--accent-border: rgba(192, 132, 252, 0.5);
+		--shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+			rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+	}
+}
+
 body {
 	margin: 0;
 	padding: 0;
-		font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	line-height: 1.4em;
-	background: #f5f5f5;
-	color: #111111;
+	background-color: var(--bg);
+	color: var(--text);
 	min-width: 230px;
 	max-width: 550px;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
+	transition: background 0.3s, color 0.3s;
 }
 
-button {
+.button {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -23,31 +68,43 @@ button {
 	vertical-align: baseline;
 	font-family: inherit;
 	font-weight: inherit;
-	color: inherit;
+	background-color: var(--accent);
+	color: white;
 	-webkit-appearance: none;
 	appearance: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.button:hover {
+	background-color: #ac59fa;
+	transform: scale(1.02);
+}
+
 #logout-btn {
-    display: block;          /* Para que ocupe toda la fila */
-    width: 100%;             /* Largo completo del contenedor */
-    max-width: 200px;        /* Limitar ancho en desktop */
-    margin: 200px;       /* Centramos y se separa del contenido */
-    padding: 12px 0;         /* Más alto para mejor clic */
-    font-size: 16px;
-    font-weight: 500;
-    background-color: #dc3545;
-    color: #fff;
-    border-radius: 999px;
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.3s;
+	display: block;
+	/* Para que ocupe toda la fila */
+	width: 100%;
+	/* Largo completo del contenedor */
+	max-width: 200px;
+	/* Limitar ancho en desktop */
+	margin: 200px;
+	/* Centramos y se separa del contenido */
+	padding: 12px 0;
+	/* Más alto para mejor clic */
+	font-size: 16px;
+	font-weight: 500;
+	background-color: var(--accent);
+	color: #fff;
+	border-radius: 999px;
+	cursor: pointer;
+	text-align: center;
+	transition: background 0.3s;
 }
 
 #logout-btn:hover {
-    background-color: rgb(161, 1, 1);
+	background-color: #a858f3;
+	transform: scale(1.02);
 }
 
 :focus {
@@ -59,11 +116,11 @@ button {
 }
 
 .todoapp {
-	background: #fff;
+	background: #f4f4f4;
 	margin: 130px 0 40px 0;
 	position: relative;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: var(--shadow);
+	transition: box-shadow 0.2s;
 }
 
 .todoapp input::-webkit-input-placeholder {
@@ -89,9 +146,11 @@ button {
 	top: -140px;
 	width: 100%;
 	font-size: 80px;
-	font-weight: 200;
 	text-align: center;
-	color: #0848c7;
+	color-scheme: light dark;
+	color: var(--text);
+	font-family: var(--heading);
+	font-weight: 500;
 	-webkit-text-rendering: optimizeLegibility;
 	-moz-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
@@ -119,7 +178,7 @@ button {
 	padding: 16px 16px 16px 60px;
 	border: none;
 	background: rgba(0, 0, 0, 0.003);
-	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+	box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
 }
 
 .main {
@@ -131,14 +190,15 @@ button {
 .toggle-all {
 	width: 1px;
 	height: 1px;
-	border: none; /* Mobile Safari */
+	border: none;
+	/* Mobile Safari */
 	opacity: 0;
 	position: absolute;
 	right: 100%;
 	bottom: 100%;
 }
 
-.toggle-all + label {
+.toggle-all+label {
 	width: 60px;
 	height: 34px;
 	font-size: 0;
@@ -149,14 +209,14 @@ button {
 	transform: rotate(90deg);
 }
 
-.toggle-all + label:before {
+.toggle-all+label:before {
 	content: '+';
 	font-size: 22px;
 	color: #e6e6e6;
 	padding: 10px 27px 10px 27px;
 }
 
-.toggle-all:checked + label:before {
+.toggle-all:checked+label:before {
 	color: #737373;
 }
 
@@ -167,18 +227,24 @@ button {
 }
 
 .todo-list li {
-    position: relative;
-    font-size: 24px;
-    border-bottom: 2px solid #ededed;
-    padding: 2px 10px;   /* espacio interno */
-    margin-bottom: 5px;  /* espacio entre cada li */
-    border-radius: 8px;   /* bordes redondeados para que se vea más moderno */
-    background-color: #fff; /* fondo blanco para separar visualmente */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* sombra ligera para profundidad */
+	position: relative;
+	font-size: 24px;
+	border-bottom: 2px solid #ededed;
+	padding: 2px 10px;
+	/* espacio interno */
+	margin-bottom: 5px;
+	/* espacio entre cada li */
+	border-radius: 8px;
+	/* bordes redondeados para que se vea más moderno */
+	background-color: #fff;
+	/* fondo blanco para separar visualmente */
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	/* sombra ligera para profundidad */
 }
 
 .todo-list li:last-child {
-    margin-bottom: 0; /* que el último li no tenga espacio extra */
+	margin-bottom: 0;
+	/* que el último li no tenga espacio extra */
 }
 
 .todo-list li label {
@@ -190,15 +256,13 @@ button {
 	font-weight: 400;
 	color: #4d4d4d;
 }
-.todo-count{
 
-}
 @media (max-width: 430px) {
-    .todo-list li {
-        font-size: 18px;
-        padding: 10px 12px;
-        margin-bottom: 8px;
-    }
+	.todo-list li {
+		font-size: 18px;
+		padding: 10px 12px;
+		margin-bottom: 8px;
+	}
 }
 
 .todo-list li.editing {
@@ -217,7 +281,7 @@ button {
 
 .todo-list li.editing .view {
 	position: relative;
-	
+
 }
 
 .todo-list li .toggle {
@@ -229,7 +293,8 @@ button {
 	top: 0;
 	bottom: 0;
 	margin: auto 0;
-	border: none; /* Mobile Safari */
+	border: none;
+	/* Mobile Safari */
 	-webkit-appearance: none;
 	appearance: none;
 }
@@ -238,7 +303,7 @@ button {
 	opacity: 0;
 }
 
-.todo-list li .toggle + label {
+.todo-list li .toggle+label {
 	/*
 		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
 		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
@@ -248,7 +313,7 @@ button {
 	background-position: center left;
 }
 
-.todo-list li .toggle:checked + label {
+.todo-list li .toggle:checked+label {
 	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
 }
 
@@ -310,10 +375,10 @@ button {
 	height: 50px;
 	overflow: hidden;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
-	            0 8px 0 -3px #f6f6f6,
-	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
-	            0 16px 0 -6px #f6f6f6,
-	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+		0 8px 0 -3px #f6f6f6,
+		0 9px 1px -3px rgba(0, 0, 0, 0.2),
+		0 16px 0 -6px #f6f6f6,
+		0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 .todo-count {
@@ -328,9 +393,9 @@ button {
 
 .filters {
 	margin: 10px 2px;
-    padding: 0;
-    list-style: none;            
-    gap: 10px;
+	padding: 0;
+	list-style: none;
+	gap: 10px;
 	position: relative;
 }
 
@@ -355,35 +420,42 @@ button {
 	border-color: rgba(175, 47, 47, 0.2);
 }
 
-.clear-completed, .clear-completed:active {
+.clear-completed,
+.clear-completed:active {
 	border-radius: 999px;
-    display: block;          /* Para que ocupe toda la fila */
-    width: 100%;             /* Largo completo del contenedor */
-    max-width: 300px;        /* Limitar ancho en desktop */
-    margin: 60px auto 0 auto;/* Separación de la lista */
-    padding: 10px;         /* Alto del botón */
+	display: block;
+	/* Para que ocupe toda la fila */
+	width: 100%;
+	/* Largo completo del contenedor */
+	max-width: 300px;
+	/* Limitar ancho en desktop */
+	margin: 60px auto 0 auto;
+	/* Separación de la lista */
+	padding: 10px;
+	/* Alto del botón */
 	font-size: 16px;
-    font-weight: 500;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.3s;
+	font-weight: 500;
+	background-color: #1ca0f8;
+	color: #fff;
+	border-radius: 999px;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	transition: background 0.3s;
 }
 
 .clear-completed:hover {
-    background-color: rgb(42, 186, 243);
+	background-color: rgb(42, 186, 243);
 }
 
 /* ----------------- MEDIA QUERIES ----------------- */
 @media (max-width: 480px) {
-    #logout-btn,
-    .clear-completed {
-        font-size: 14px;
-        padding: 10px 0;
-    }
+
+	#logout-btn,
+	.clear-completed {
+		font-size: 14px;
+		padding: 10px 0;
+	}
 }
 
 .info {
@@ -413,6 +485,7 @@ button {
 	Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
 	.toggle-all,
 	.todo-list li .toggle {
 		background: none;
@@ -553,7 +626,7 @@ hr {
 	border-top-color: rgba(0, 0, 0, .04);
 }
 
-.learn-bar > .learn {
+.learn-bar>.learn {
 	position: absolute;
 	width: 272px;
 	top: 8px;
@@ -571,7 +644,7 @@ hr {
 		padding-left: 300px;
 	}
 
-	.learn-bar > .learn {
+	.learn-bar>.learn {
 		left: 8px;
 	}
 }

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./src/style-login.css">
@@ -14,6 +14,16 @@
 
 <body>
   <div id="login-conteiner">
+    <section id="center">
+  <div class="hero">
+    <img src="/assets/hero.png" class="base" width="170" height="179">
+    <img src="/assets/javascript.svg" class="framework" alt="JavaScript logo"/>
+    <img src="/assets/vite.svg" class="vite" alt="Vite logo" />
+  </div>
+  <div>
+
+
+
     <h2>Iniciar sesión</h2>
     <form id="login-form">
       <label class="username" for="username">Usuario:</label>
@@ -26,8 +36,10 @@
           <i class="bi bi-eye"></i>
         </button>
       </div>
-
+      <h6 class="h6">-0-</h6>
+      <button class="btn btn-danger" type="btn-submit">Resgistrarse</button>
       <button class="btn-submit" type="submit">Iniciar sesión</button>
+      <div id="loginError" class="error-menssage"></div>
     </form>
   </div>
 
