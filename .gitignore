@@ -1,0 +1,19 @@
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Editor / OS files
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+
+# Cache
+.cache/
+
+# Environment variables
+.env
+.env.local
