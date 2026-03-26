@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./src/style-login.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
   <title>Login - Todo App</title>
 </head>
@@ -16,9 +17,8 @@
   <div id="login-conteiner">
     <section id="center">
   <div class="hero">
-    <img src="/assets/hero.png" class="base" width="170" height="179">
-    <img src="/assets/javascript.svg" class="framework" alt="JavaScript logo"/>
-    <img src="/assets/vite.svg" class="vite" alt="Vite logo" />
+    <img src="/public/hero.png" class="base" width="170" height="179">
+    <img src="/public/favicon.svg" class="framework" alt="JavaScript logo"/>
   </div>
   <div>
 
@@ -37,12 +37,14 @@
         </button>
       </div>
       <h6 class="h6">-0-</h6>
-      <button class="btn btn-danger" type="btn-submit">Resgistrarse</button>
-      <button class="btn-submit" type="submit">Iniciar sesión</button>
+      <button id="resgistrarse" class="btn btn-danger">Resgistrarse</button>
+      <button id="iniciarSesion-btn" class="btn-submit" type="submit">Iniciar sesión</button>
       <div id="loginError" class="error-menssage"></div>
     </form>
-  </div>
 
+    
+  </div>
+  
   <script type="module" src="./src/main-login.js"></script>
 </body>
 
